@@ -1,43 +1,45 @@
 import axios from 'axios'
 
 
-const super_secret_token_v1 = process.env.SECRET_TOKEN1
-const super_secret_token_v2 = process.env.SECRET_TOKEN2
+const super_secret_token = process.env.SECRET_TOKEN
 
 export default function apiRequest(path,params) {
     
     const v1Regex = new RegExp('^\/1\.1\/')
     const v2Regex = new RegExp('^\/2\/')
-    let token
+    let token = super_secret_token
 
     if(path.match(v1Regex)) {
-        token = super_secret_token_v1
+        console.log("using Twitter API v1")
+
     }
 
     else if (path.match(v2Regex)) {
-        token = super_secret_token_v2
+        console.log("using Twitter API v2")
     }
-
-    
 
     else {
-        throw(`bad path when creating request: ${path}.  Check path an try again.`)
+        throw(`Bad path when creating request: ${path}.  Check path an try again.`)
     }
+    console.log("------------------------------")
+    console.log('Making API request...')
 
-    console.log('Making API request')
-
-    
-
-    
-
-    let req = axios.create({
+    let requestArgs = {
         baseURL: 'https://api.twitter.com/',
         timeout: 10000,
         headers: {
         'Authorization': 'Bearer ' + token
         },
         params: params
-    })
+    }
+
+    console.log("request details")
+    console.log(requestArgs)
+    console.log("------------------------------")
+
+    
+
+    let req = axios.create(requestArgs)
 
     return req.get(path)
 

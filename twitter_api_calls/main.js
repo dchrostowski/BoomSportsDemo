@@ -1,5 +1,14 @@
 import apiRequest from './util.js'
 
+if(!process.env.SECRET_TOKEN) {
+    console.log("Missing SECRET_TOKEN environment variable.  Check .env file.")
+    process.exit(1)
+}
+
+if(!process.env.NUMBER_OF_API_REQUESTS) {
+    console.log("Missing number of API requests, check .env file.")
+    process.exit(1)
+}
 
 
 // I dreamed too big and got execited by all the new v2.0 api features
@@ -40,7 +49,10 @@ async function getLegitFamousPeople() {
             })
         }
         catch(err) {
-            throw(err)
+            console.log("Error ocurrred on request:")
+            console.log(err.response.data)
+
+            process.exit(1)
         }
 
 

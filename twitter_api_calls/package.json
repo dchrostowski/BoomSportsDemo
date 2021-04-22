@@ -9,7 +9,7 @@
   "name": "Celeb_NFL_Fans_POC",
   "version": "1.0.0",
   "description": "just seeing if we can get any celebs",
-  "main": "do_requests.js",
+  "main": "main.js",
   "author": "dan chrostowski",
   "license": "MIT",
   "private": null

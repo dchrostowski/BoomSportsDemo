@@ -14,6 +14,6 @@ Twitter's standard API plans are not very good for the goal of this project but 
 
 1. `cd twitter_api_calls`
 2. `yarn install`
-3. Either contact dan@danchrostowski.com to get `SECRET_TOKEN1` (v1.1) and `SECRET_TOKEN2` (v2 early access) or create your own Twitter development account.  You'll need to generate an OAuth Bearer token for both the v1.1 and v2 APIs.  Once acquired, set them in the `.env` file. 
-4. Put how many API calls you'd like to make in the `.env` with the `NUMBER_OF_API_REQUESTS` file but keep in mind, you can only do 500K per day on the basic plan and it will also take a very long time.  I have defaulted it to 20.  To reiterate - using a premium API plan which can exclude non-famous people would be a much more elegant and efficient solution, but I'm sure cranking up the API calls to 1000 and waiting for 20-30 minutes will get the smae result.
+3. Set the `SECRET_TOKEN` value in `.env`.  This is the bearer token associated with your Twitter developer account.
+4. Update how many API requests you want to make (see `.env` file)
 5. `yarn start`
