@@ -2,11 +2,8 @@ import axios from 'axios'
 import {SECRET_TOKEN} from '@env'
 
 
-
+// This creates a twitter API request.  You need to put the SECRET_TOKEN in a .env file so that request can be properly signed with my bearer token
 export default function apiRequest(path,params) {
-    console.log(path)
-    console.log(params)
-    console.log("call to apiRequest")
     
     const v1Regex = new RegExp('^\/1\.1\/')
     const v2Regex = new RegExp('^\/2\/')
