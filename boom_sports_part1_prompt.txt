@@ -1,0 +1,73 @@
+Prompt
+--------------------------------------------------------------------------
+Part 1
+
+Pretend you are the head engineer of a gaming company, and you have been asked by the CEO to build something. The CEO wants you to build an administration platform to go along with some of the new games your company is releasing in the future. This administration platform would allow employees of your company to create and release contests for users of the application to play. Design this administration system. 
+
+Coding an application is not necessary for this question, we are hoping to spark a conversation in which we talk about your high-level design choices. Feel free to explain in written plain English, or use visual representations, whatever you feel is strongest in getting your ideas across. Think about how you would store and manage the data, what that structure would look like and how it might be accessed. 
+
+
+Requirements/Pointers
+
+Questions are multiple-choice
+
+How would you think about keeping track and scoring players' entries
+---------------------------------------------------------------------------
+
+
+1. Storag considerations:
+
+First thing that comes to mind is data storage and mining.  How much data needs to be stored?  Would the data and scoring differ across games and platforms or would they all be similar or exactly the same?  Could the data be easily consolidated and conform nicely?  How long would this data need to be maintained?  How would it be used? Who would need to use the data and how would they like it packaged?
+
+
+To my knowledge, storage usually breaks down to two categories: relational data storage (think MySQL, Postgres) and document based data storage (think MongoDB).  How to go about storing this would likely depend on several factors.
+
+I'll give an example.  A few years ago I was working on a project that required both relational and document storage.  This project would attempt to correlate stock market prices vs overall sentiment.  Some of the data needed to be in a relational format.  Some needed document based storage.  I ended up using Postgres for the relational data and MongoDB for the document based storage.  Here's a rough example:
+
+Relation use case:
+
+Maintain a list of securities tracking what exchange they traded on, the company name, ticker synmbol, and what sector they belonged to.  So this called for a relational datbase:
+
+|--------Exchanges--------|
+Exchange ID, Exchange Name
+1            NYSE
+2            NASDAQ
+3            London Stock Exchange
+4            OTC
+
+|---------Sector-----------|
+SectorID     Sector Name
+1            Agricultural
+2            Biomedical
+3            Technology
+
+
+|---------------------Security--------------------|
+SecurityID     TickerSymbol    ExchangeID  SectorID
+1              GOOGL           2             3
+
+
+I would also have web crawlers running all over the internet picking up values during intra-day trading on hourly intervals (or as fast as I could get them).  For this type of data, it made no sense to use relational data.  I just needed quick storage of a stock's price multiple times per day without the overhead of a relational database.  I'd pull the ticker symbol, exchange, time, and value of the stock and quickly store it (this was the easiest way to get a semi-reliable unique-ish security that could later be correlated to the big Postgres database of stocks.):
+
+{ dateTime: 2016-04-01 10:00:00, tickerSymbol: AMZN, exchange: NASDAQ, price: 701.84}
+
+
+To sum up the storage, I would say it depends but it will likely be one of the two data storage methods mentioned above.
+
+-------------------------------------------------------------------------------------------------
+
+2. Scalability
+
+How many and how often would these contests occur?  Would they have a start and end date?  Any estimate of the approximate volume of end-user engagment?  This is important because we'd need to determine what architecture would be necessary.  I am aware of general trend toward serverless technologies that have the ability to scale as needed (Amazon Web Services immediately comes to mind).  Would deployments of these contests need to be automated or could just one person kind of transfer their files into the web directory of a server running somewhere?  What is the development teams' overall experience with CI/CD?  Would a CI/CD workflow make sense here?
+
+--------------------------------------------------------------------------------------------------
+3. User Interface / User Experience
+
+How would these contests be administered?  Would they be done on a video game console?  A web application?  A mobile device?  Things to consider: the development time needed to create these contests, the path of least resistance, and how each platform/user interface would impact user engagement.  Are we aiming for very high engagment or does it not really matter?
+
+__________________________________________________________________________________________________
+
+Sorry, I have way more questions than answers, and I wouldn't want to make so many assumptions and answerthis prompt before having a more in-depth discussion because there are so many variables at play and it would be important to consider all of these things before simply jumping into a solution.
+
+
+
