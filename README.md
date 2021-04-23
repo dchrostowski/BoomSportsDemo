@@ -17,7 +17,7 @@ Uses Twitter's API to analyze the most popular NFL tweets and then determines th
 ## Screenshots
 <img src="https://i.imgur.com/IIC2PDm.png"/>
 <img src="https://i.imgur.com/E1JuM2d.png"/>
-<img src="https://i.imgur.com/QYvqbjs.png"/>
+<img src="https://i.imgur.com/EBBelzp.png"/>
 
 ### The Twitter API calls
 Twitter's standard API plans are not very good for the goal of this project but I refuse to pay Twitter anything and will probably unleash a hoard of web crawelers to their site just out of spite.

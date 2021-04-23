@@ -8,24 +8,17 @@ import 'react-native-gesture-handler';
  */
 
 import React from 'react';
-import type {Node} from 'react';
-import { NavigationContainer} from '@react-navigation/native';
+import type { Node } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack'
 import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
   StyleSheet,
   Text,
   useColorScheme,
   View,
 } from 'react-native';
 import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
+  Colors
 } from 'react-native/Libraries/NewAppScreen';
 
 import Home from './src/components/Home'
@@ -34,32 +27,6 @@ import Results from './src/components/Results'
 
 
 
-const Section = ({children, title}): Node => {
-  
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-};
-
 const App: () => Node = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
@@ -67,21 +34,16 @@ const App: () => Node = () => {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
   const Stack = createStackNavigator()
-//  const HomeScreen = <Home />
-//  const ResultsScreen = <Results />
 
-  
+
 
   return (
-      
-      <NavigationContainer style={styles.backgroundColor}>
-        <Stack.Navigator initialRouteName="Home">
-          <Stack.Screen name="Home" component={Home}/>
-          <Stack.Screen name="Results" component={Results}/>
-        </Stack.Navigator>
-      </NavigationContainer>
-      
-  
+    <NavigationContainer style={styles.backgroundColor}>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Results" component={Results} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 
