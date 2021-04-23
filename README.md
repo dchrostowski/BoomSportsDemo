@@ -1,13 +1,18 @@
-# Most Famous NFL Fans on Twitter ( React Native Demo )
+# Most Famous NFL Fans on Twitter (React Native Demo)
+
+## What this does
+
+Uses Twitter's API to analyze the most popular NFL tweets and then determines the top 5 most famous Twitter users who tweeted about the NFL.
 
 ## How to run
 
 ### React Native App
 1. `cd react_native app`
+2. Create a `.env` file in the react native base directory, enter `SECRET_TOKEN=<your bearer auth token>` and save it.  You can get your bearer auth token from your Twitter development account.
 2. `yarn install`
-3. Run `yarn start android` for Android or `yarn start ios` if you're an Apple fanboi
-
-As of now, it doesn't display anything, I didn't get a chance to integrate my axios functions (which are working) into it.
+3. `yarn start`
+4. Rev up your simulators and/or emulators
+5. Run `yarn android` for Android or `yarn ios` if you're an Apple fanboi
 
 ### The Twitter API calls
 Twitter's standard API plans are not very good for the goal of this project but I refuse to pay Twitter anything and will probably unleash a hoard of web crawelers to their site just out of spite.
